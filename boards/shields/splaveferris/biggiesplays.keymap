@@ -1,0 +1,118 @@
+// Copyright (c) 2022 The ZMK Contributors
+// SPDX-License-Identifier: MIT
+
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/bt.h>
+
+/ {
+    behaviors {
+        ht: hold_tap {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <220>;
+            quick-tap-ms = <150>;
+            require-prior-idle-ms = <100>;
+            bindings = <&kp>, <&kp>;
+        };
+    };
+
+    conditional_layers {
+        compatible = "zmk,conditional-layers";
+        tri_layer {
+            if-layers = <1 2>;
+            then-layer = <3>;
+        };
+    };
+
+    keymap {
+        compatible = "zmk,keymap";
+
+        default_layer {
+            display-name = "QWERTY";
+            bindings = <
+        //╭──────────┬──────────┬──────────┬──────────┬──────────┬──────────╮     ╭──────────┬──────────┬──────────┬──────────┬──────────┬──────────╮
+        //│  ` ~     |  1 !     │  2 @     │  3 #     │  4 $     │  5 %     │     │  6 ^     │  7 &     │  8 *     │  9 (     │  0 )     │  BSPC    |
+            &kp GRAVE  &kp N1     &kp N2     &kp N3     &kp N4     &kp N5            &kp N6    &kp N7     &kp N8     &kp N9      &kp N0    &kp BSPC
+        //├──────────┼──────────┼──────────┼──────────┼──────────┤──────────┤     ├──────────┼──────────┼──────────┼──────────┼──────────┤──────────┤
+        //│  TAB     |  Q       │  W       │E+FUNLAYER│  R       │  T       │     │  Y       │  U       │  I       │  O       │  P       │  \ |     |
+            &kp TAB    &kp Q      &kp W      &lt 2 E    &kp R      &kp T            &kp Y      &kp U      &lt 2 I    &kp O      &kp P      &kp BSLH 
+        //├──────────┼──────────┼──────────┼──────────┼──────────┤──────────┤     ├──────────┼──────────┼──────────┼──────────┼──────────┤──────────┤
+        //│  ESC     │  A       │  S       │  D       │  F       │  G       |     │  H       │  J       │  K       │  L       │  ; :     │  ' "     |            
+            &kp ESC    &kp A      &kp S      &kp D      &kp F      &kp G            &kp H      &kp J      &kp K      &kp L      &kp SEMI   &kp SQT
+        //├──────────┼──────────┼──────────┼──────────┼──────────┤──────────┤     ├──────────┼──────────┼──────────┼──────────┼──────────┤──────────┤
+        //│SHFT+CAPWD│  Z       │  X       │  C       │V+NAVLAYER│  B       |     │  N       │  M       │  , <     │  . >     │  ? /     │SHFT+CAPWD|
+            &tdcap     &kp Z      &kp X      &kp C      &lt 1 V    &kp B            &kp N      &lt 1 M   &kp COMMA   &kp DOT    &kp FSLH   &tdcap
+        //├──────────┼──────────┼──────────┼──────────┼──────────┤──────────┤     ├──────────┼──────────┼──────────┼──────────┼──────────┤──────────┤
+        //                                 │  ALT     │  SPACE   │KELTICKNOT|     │  ENTER   │  SPACE   │KELTICKNOT│ 
+                                             &kp LALT   &kp SPACE  &kp LGUI       &lt 3 ENTER  &kp SPACE  &kp RGUI
+            >;
+        };
+
+        nav_layer {
+            display-name = "NAVIGATION";
+            bindings = <
+        //╭──────────┬──────────┬──────────┬──────────┬──────────┬──────────╮     ╭──────────┬──────────┬──────────┬──────────┬──────────┬──────────╮
+        //│          |          │          │          │          │          │     │          │          │          │          │          │          |
+            &none      &none      &none      &none      &none      &none           &none       &none      &none      &none      &none      &none
+        //├──────────┼──────────┼──────────┼──────────┼──────────┤──────────┤     ├──────────┼──────────┼──────────┼──────────┼──────────┤──────────┤
+        //│          |          │          │          │          │          │     │ PAGE UP  │  HOME    │  UP      │  END     │  0       │  - _     |
+            &none      &none      &none      &mo 2      &none      &none           &kp PG_UP   &kp HOME   &kp UP     &kp END    &kp N0     &kp MINUS
+        //├──────────┼──────────┼──────────┼──────────┼──────────┤──────────┤     ├──────────┼──────────┼──────────┼──────────┼──────────┤──────────┤
+        //│  ESC     │          │          │          │          │          |     │PAGE DOWN │  LEFT    │  DOWN    │  RIGHT   │PAGE DOWN │  ' "     |
+            &kp ESC    &none      &none      &none      &none      &none           &kp PG_DN   &kp LEFT   &kp DOWN   &kp RIGHT  &kp PG_DN  &kp SQT
+        //├──────────┼──────────┼──────────┼──────────┼──────────┤──────────┤     ├──────────┼──────────┼──────────┼──────────┼──────────┤──────────┤
+        //│ SHIFT+L0 │          │          │          │          │          |     │  ALT     │  INSERT  │  DOWN    │  HOME    │          │ SHIFT+L0 |
+           &tdshto0    &none      &none      &none      &none      &none            &kp RALT   &kp INS    &kp DOWN   &kp HOME   &none      &tdshto0
+        //├──────────┼──────────┼──────────┼──────────┼──────────┤──────────┤     ├──────────┼──────────┼──────────┼──────────┼──────────┤──────────┤
+        //                                 │  {       │  [       │ (        |     │  )       │  ]       │  }       │ 
+                                             &kp LBRC  &kp LBKT   &kp LPAR         &kp RPAR    &kp RBKT   &kp RBRC
+            >;
+        };
+
+
+
+        fun_layer {
+            display-name = "FUNCTION";
+            bindings = <
+        //╭──────────┬──────────┬──────────┬──────────┬──────────┬──────────╮     ╭───────────────┬───────────────┬───────────────┬───────────────┬───────────────┬───────────────╮
+        //│          |          │          │          │NAV LAYER │          │     │               │               │               │               │               │               |
+            &kp F1     &kp F2     &kp F3     &kp F4     &lt 2 F5   &kp F6              &kp F7           &kp F8          &kp F9          &kp F10         &kp F11         &kp F12
+        //├──────────┼──────────┼──────────┼──────────┼──────────┤──────────┤     ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤───────────────┤
+        //│          │          │          │          │          │          |     │               │               │               │               │               │               |
+            &kp LGUI   &kp LALT   &kp LCTRL  &kp LSHFT  &kp LGUI   &none           &rgb_ug RGB_TOG &rgb_ug RGB_EFF &rgb_ug RGB_SPD &rgb_ug RGB_SPI &rgb_ug RGB_BRI &rgb_ug RGB_BRD
+        //├──────────┼──────────┼──────────┼──────────┼──────────┤──────────┤     ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤───────────────┤
+        //│          │          │          │          │          │          |     │               │               │               │               │               │               |
+            &kp LGUI   &kp LALT   &kp LCTRL  &kp LSHFT  &kp LGUI   &none           &rgb_ug RGB_TOG &rgb_ug RGB_EFF &rgb_ug RGB_SPD &rgb_ug RGB_SPI &rgb_ug RGB_BRI &rgb_ug RGB_BRD
+        //├──────────┼──────────┼──────────┼──────────┼──────────┤──────────┤     ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤───────────────┤
+        //│  SHIFT   │          │          │          │          │          |     │               │               │               │               │               │               |
+           &kp LSHIFT   &none     &none      &none      &no 1      &none           &none           &kp N1          &kp N2          &kp N3          &kp PLUS        &rgb_ug RGB_COLOR_HSB(333,50,100)
+        //├──────────┼──────────┼──────────┼──────────┼──────────┤──────────┤     ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤───────────────┤
+        //                                 │  ALT     │KELTICKNOT│ SPACE    |     │  ENTER        │  0            │  DOT          │ 
+                                             &kp LALT  &kp LGUI  &kp SPACE          &lt 3 ENTER     &kp N0          &kp DOT
+            >;
+        };
+
+        util_layer {
+            display-name = "UTILITY";
+            bindings = <
+        //╭──────────┬──────────┬──────────┬──────────┬──────────┬──────────╮     ╭──────────┬──────────────┬──────────────┬──────────────┬──────────────┬──────────────╮
+        //│          │          │          │          │          │          │     │          │              │              │              │              │              |   
+           &none        &none      &none       &none       &none     &none            &none      &none        &none          &none           &none         &none
+        //├──────────┼──────────┼──────────┼──────────┼──────────┼──────────┤     ├──────────┼──────────────┼──────────────┼──────────────┼──────────────┼──────────────┤
+        //│          │          │          │          │          │          │     │          │              │              │              │              │               
+           &none        &none      &none       &none       &none     &none            &none      &none        &none          &none           &none         &none
+        //├──────────┼──────────┼──────────┼──────────┼──────────┼──────────┤     ├──────────┼──────────────┼──────────────┼──────────────┼──────────────┼──────────────┤
+        //│          │          │          │          │          │          │                │ Hunter Work  │ Britt Work   │              │ Tiny Lappy   │              │
+           &none        &none      &none       &none       &none     &none            &none      &btht 0 0    &btht 1 1      &btht 2 2      &btht 3 3      &btht 4 4
+        //├──────────┼──────────┼──────────┼──────────┼──────────┼──────────┤     ├──────────┼──────────────┼──────────────┼──────────────┼──────────────┼──────────────┤
+        //│          │          │          │          │          │          │                │              │ USB/BLE      │              │              │Clear Profile │
+           &none        &none      &none       &none       &none     &none            &none      &none        &out OUT_TOG    &none           &none        &bt BT_CLR
+        //╰──────────┴──────────┴──────────┴──────────┼──────────┼──────────┤     ├──────────┼──────────────┼──────────────┼──────────────┴──────────────┴──────────────╯
+                                               &none       &none     &none        &bt BT_PRV    &bt BT_NXT    &none
+        //                                 ╰──────────┴──────────┴──────────╯     ╰──────────┴──────────────┴──────────────╯
+            >;
+        };
+    };
+};

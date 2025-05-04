@@ -1,0 +1,13 @@
+file_format: "1"
+id: biggiesplays
+name: BiggieSplays
+type: shield
+url: https://github.com/jusdisgi/biggiesplays
+requires: [seeed_xiao]
+exposes: [i2c_oled]
+features:
+  - keys
+  - studio
+siblings:
+  - biggiesplays_left
+  - biggiesplays_right
