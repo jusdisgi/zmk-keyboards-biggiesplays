@@ -25,6 +25,25 @@
             bindings = <&btdis>, <&btsel>;
         };
     };
+    macros {
+        btsel: bluetooth_select {
+            compatible = "zmk,behavior-macro-one-param";
+            #binding-cells = <1>;
+            bindings
+                = <&macro_param_1to2>
+                , <&macro_tap &bt BT_SEL MACRO_PLACEHOLDER>
+                , <&macro_tap &out OUT_BLE>
+                ;
+        };
+        btdis: bluetooth_disconnect {
+            compatible = "zmk,behavior-macro-one-param";
+            #binding-cells = <1>;
+            bindings
+                = <&macro_param_1to2>
+                , <&macro_tap &bt BT_DISC MACRO_PLACEHOLDER>
+                ;
+        };
+    };
 
     conditional_layers {
         compatible = "zmk,conditional-layers";
@@ -113,7 +132,7 @@
            &none        &none      &none       &none       &none     &none            &none      &none        &none          &none           &none         &none
         //├──────────┼──────────┼──────────┼──────────┼──────────┼──────────┤     ├──────────┼──────────────┼──────────────┼──────────────┼──────────────┼──────────────┤
         //│          │          │          │          │          │          │                │ Hunter Work  │ Britt Work   │              │ Tiny Lappy   │              │
-           &none        &none      &none       &none       &none     &none            &none      &bt BT_SEL 0    &bt BT_SEL 1      &bt BT_SEL 2      &bt BT_SEL 3      &bt BT_SEL 4
+           &none        &none      &none       &none       &none     &none            &none      &btht 0 0      &btht 1 1      &btht 2 2      &btht 3 3    &btht 4 4
         //├──────────┼──────────┼──────────┼──────────┼──────────┼──────────┤     ├──────────┼──────────────┼──────────────┼──────────────┼──────────────┼──────────────┤
         //│          │          │          │          │          │          │                │              │ USB/BLE      │              │              │Clear Profile │
            &none        &none      &none       &none       &none     &none            &none      &none        &out OUT_TOG    &none           &none        &bt BT_CLR
