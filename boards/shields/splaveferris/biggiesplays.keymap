@@ -71,8 +71,8 @@
         //│  ESC     │  A       │  S       │  D       │  F       │  G       |     │  H       │  J       │  K       │  L       │  ; :     │  ' "     |            
             &kp ESC    &kp A      &kp S      &kp D      &kp F      &kp G            &kp H      &kp J      &kp K      &kp L      &kp SEMI   &kp SQT
         //├──────────┼──────────┼──────────┼──────────┼──────────┤──────────┤     ├──────────┼──────────┼──────────┼──────────┼──────────┤──────────┤
-        //│SHFT+CAPWD│  Z       │  X       │  C       │V+NAVLAYER│  B       |     │  N       │  M       │  , <     │  . >     │  ? /     │SHFT+CAPWD|
-            &tdcap     &kp Z      &kp X      &kp C      &lt 1 V    &kp B            &kp N      &lt 1 M   &kp COMMA   &kp DOT    &kp FSLH   &tdcap
+        //│  SHIFT   │  Z       │  X       │  C       │V+NAVLAYER│  B       |     │  N       │  M       │  , <     │  . >     │  ? /     │  SHFT    |
+            &kp LSHIFT  &kp Z      &kp X      &kp C      &lt 1 V    &kp B            &kp N      &lt 1 M   &kp COMMA   &kp DOT    &kp FSLH   &kp RSHIFT
         //├──────────┼──────────┼──────────┼──────────┼──────────┤──────────┤     ├──────────┼──────────┼──────────┼──────────┼──────────┤──────────┤
         //                                 │  ALT     │  SPACE   │KELTICKNOT|     │  ENTER   │  SPACE   │KELTICKNOT│ 
                                              &kp LALT   &kp SPACE  &kp LGUI       &lt 3 ENTER  &kp SPACE  &kp RGUI
