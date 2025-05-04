@@ -16,6 +16,14 @@
             require-prior-idle-ms = <100>;
             bindings = <&kp>, <&kp>;
         };
+        btht: bluetooth_hold_tap {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <2000>;
+            require-prior-idle-ms = <100>;
+            bindings = <&btdis>, <&btsel>;
+        };
     };
 
     conditional_layers {
