@@ -92,8 +92,8 @@
         //│  ESC     │          │          │          │          │          |     │PAGE DOWN │  LEFT    │  DOWN    │  RIGHT   │PAGE DOWN │  ' "     |
             &kp ESC    &none      &none      &none      &none      &none           &kp PG_DN   &kp LEFT   &kp DOWN   &kp RIGHT  &kp PG_DN  &kp SQT
         //├──────────┼──────────┼──────────┼──────────┼──────────┤──────────┤     ├──────────┼──────────┼──────────┼──────────┼──────────┤──────────┤
-        //│ SHIFT+L0 │          │          │          │          │          |     │  ALT     │  INSERT  │  DOWN    │  HOME    │          │ SHIFT+L0 |
-           &tdshto0    &none      &none      &none      &none      &none            &kp RALT   &kp INS    &kp DOWN   &kp HOME   &none      &tdshto0
+        //│ SHIFT    │          │          │          │          │          |     │  ALT     │  INSERT  │  DOWN    │  HOME    │          │ SHIFT    |
+           &kp LSHIFT    &none      &none      &none      &none      &none            &kp RALT   &kp INS    &kp DOWN   &kp HOME   &none      &kp RSHFT
         //├──────────┼──────────┼──────────┼──────────┼──────────┤──────────┤     ├──────────┼──────────┼──────────┼──────────┼──────────┤──────────┤
         //                                 │  {       │  [       │ (        |     │  )       │  ]       │  }       │ 
                                              &kp LBRC  &kp LBKT   &kp LPAR         &kp RPAR    &kp RBKT   &kp RBRC
